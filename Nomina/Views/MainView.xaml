@@ -1,0 +1,238 @@
+﻿<Window x:Class="Nomina.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nomina.Views"
+        xmlns:VM="clr-namespace:Nomina.ViewModels"
+        xmlns:icono="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title=""
+        Height="700"
+        Width="1200"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        FontFamily="/Assets/#Quicksand Medium"
+        FontWeight="Light"
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <VM:MainViewViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type VM:EmpleadosViewModel}">
+            <local:IndexEmpleadosView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type VM:CategoriasViewModel}">
+            <local:IndexCategoriasView />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Margin="0">
+        <Border Background="#1A1A1A"
+                CornerRadius="10" />
+        <StackPanel HorizontalAlignment="Left"
+                    Background="Transparent">
+            <StackPanel.Resources>
+                <Style TargetType="RadioButton" x:Key="BotonesMenu">
+                    <Setter Property="Height"
+                            Value="60" />
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                    <Setter Property="Margin"
+                            Value="0,5,10,0" />
+                    <Setter Property="Cursor"
+                            Value="Hand" />
+                    <Setter Property="Width"
+                            Value="170" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter
+                                        HorizontalAlignment="Left"
+                                       VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style TargetType="TextBlock" x:Key="Titulos">
+                    <Setter Property="FontSize"
+                            Value="20" />
+                    <Setter Property="VerticalAlignment"
+                            Value="Center" />
+                    <Setter Property="FontWeight"
+                            Value="Light" />
+                    <Setter Property="Margin"
+                            Value="15,0,0,0" />
+                    <Setter Property="Foreground"
+                            Value="LightGray" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}},
+                            Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Foreground"
+                                    Value="White" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}},
+                            Path=IsMouseOver}"
+                                     Value="True">
+                            <Setter Property="Foreground"
+                                    Value="White" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="icono:ImageAwesome" x:Key="Iconos">
+                    <Setter Property="Foreground"
+                            Value="LightGray" />
+                    <Setter Property="Width"
+                            Value="30" />
+                    <Setter Property="Margin"
+                            Value="10,0,0,0" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}},
+                            Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Foreground"
+                                    Value="White" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}},
+                            Path=IsMouseOver}"
+                                     Value="True">
+                            <Setter Property="Foreground"
+                                    Value="White" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="Border"
+                       x:Key="borderlateral">
+                    <Setter Property="Background"
+                            Value="White" />
+                    <Setter Property="Width"
+                            Value="7" />
+                    <Setter Property="Height"
+                            Value="40" />
+                    <Setter Property="Visibility"
+                            Value="Hidden" />
+                    <Setter Property="CornerRadius"
+                            Value="0,10,10,0" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}},
+                            Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}},
+                            Path=IsMouseOver}"
+                                     Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Resources>
+            <ToggleButton Width="30"
+                          Cursor="Hand"
+                          HorizontalAlignment="Left"
+                          Margin="20,50,0,40"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Name="tbtMenu"
+                          Height="30">
+                <ToggleButton.Resources>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Resources>
+                <ToggleButton.Triggers>
+                    <EventTrigger RoutedEvent="ToggleButton.Checked">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="menu"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="1000"
+                                                 Duration="0:0:0.4" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="menu"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="1127"
+                                                 Duration="0:0:0.4" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ToggleButton.Triggers>
+                <icono:ImageAwesome Icon="Bars"
+                                    Foreground="white" />
+            </ToggleButton>
+            <RadioButton  Style="{StaticResource BotonesMenu}"
+                         IsChecked="True"
+                          Command="{Binding NavegarEmpleadosCommand}">
+                <WrapPanel>
+                    <Border Style="{StaticResource borderlateral}"/>
+                    <icono:ImageAwesome Icon="User" Style="{StaticResource Iconos}"/>
+                    <TextBlock Text="Empleados" Style="{StaticResource Titulos}"/>
+                </WrapPanel>
+            </RadioButton>
+            <RadioButton 
+                         Style="{StaticResource BotonesMenu}"
+                         Command="{Binding NavegarCategoriasCommand}">
+                <WrapPanel>
+                    <Border Style="{StaticResource borderlateral}" />
+                    <icono:ImageAwesome Icon="PieChart"
+                                        Style="{StaticResource Iconos}" />
+                    <TextBlock Text="Categorías"
+                               Style="{StaticResource Titulos}" />
+                </WrapPanel>
+            </RadioButton>
+            <RadioButton 
+                         Style="{StaticResource BotonesMenu}"
+                         Command="{Binding NavegarEmpleadosCommand}">
+                <WrapPanel>
+                    <Border Style="{StaticResource borderlateral}" />
+                    <icono:ImageAwesome Icon="Archive"
+                                        Style="{StaticResource Iconos}" />
+                    <TextBlock Text="Registros"
+                               Style="{StaticResource Titulos}" />
+                </WrapPanel>
+            </RadioButton>
+            <RadioButton Margin="0,250,10,0"
+                         x:Name="btnCerrar"
+                         Click="btnCerrar_Click"
+                         Style="{StaticResource BotonesMenu}"
+                         Command="{Binding NavegarEmpleadosCommand}">
+                <WrapPanel>
+                    <Border Style="{StaticResource borderlateral}" />
+                    <icono:ImageAwesome Icon="PowerOff"
+                                        Style="{StaticResource Iconos}" />
+                    <TextBlock Text="Cerrar"
+                               Style="{StaticResource Titulos}" />
+                </WrapPanel>
+            </RadioButton>
+        </StackPanel>
+        <Border CornerRadius="10"
+                Name="menu"
+                Margin="20,10,10,10"
+                HorizontalAlignment="Right"
+                Background="White"
+                Width="1127">
+            <ContentControl Content="{Binding ActualViewModel}" 
+                            Margin="10"/>
+        </Border>
+   
+    </Grid>
+</Window>

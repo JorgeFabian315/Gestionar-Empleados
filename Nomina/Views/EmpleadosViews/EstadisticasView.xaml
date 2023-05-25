@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Nomina.Views.EmpleadosViews.EstadisticasView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Nomina.Views.EmpleadosViews"
+             xmlns:icono="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <TextBlock Text="Estadísticas"
+                       Foreground="Black"
+                       FontSize="35"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0"
+                       FontWeight="Light"
+                       FontFamily="/Assets/#Quicksand Medium" />
+            <Button Width="80"
+                    Height="50"
+                    Margin="10"
+                    Style="{StaticResource botones}"
+                    HorizontalAlignment="Right"
+                    Command="{Binding RegresarCommand}"
+                    Background="{StaticResource colorrojo}">
+                <icono:ImageAwesome Icon="ArrowLeft"
+                                    Margin="8"
+                                    Foreground="White" />
+            </Button>
+        </Grid>
+        <StackPanel Margin="10,50,10,0">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin"
+                            Value="0,5" />
+                </Style>
+            </StackPanel.Resources>
+            <WrapPanel>
+                <TextBlock Text="Empleado mejor pagado: "
+                           FontSize="20" />
+                <TextBlock Text="{Binding EmpleadoMejorPagado}"
+                           FontSize="20"
+                           Foreground="{StaticResource colordorado}" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Empleado peor pagado: "
+                           FontSize="20" />
+                <TextBlock Text="{Binding EmpleadoPeorPagado}"
+                           FontSize="20"
+                           Foreground="{StaticResource colordorado}" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Mejor sueldo: "
+                           FontSize="20" />
+                <TextBlock Text="$ "
+                           FontSize="20"
+                           Foreground="{StaticResource colordorado}" />
+                <TextBlock Text="{Binding MejorSueldo}"
+                           FontSize="20"
+                           Foreground="{StaticResource colordorado}" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Peor sueldo "
+                           FontSize="20" />
+                <TextBlock Text="$ "
+                           FontSize="20"
+                           Foreground="{StaticResource colordorado}" />
+                <TextBlock Text="{Binding PeorSueldo}"
+                           FontSize="20"
+                           Foreground="{StaticResource colordorado}" />
+            </WrapPanel>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

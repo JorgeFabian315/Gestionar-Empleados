@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="Nomina.Views.EmpleadosViews.PlantillaEmpleadosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Nomina.Views.EmpleadosViews"
+             xmlns:icono="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid Height="270"
+          Margin="10"
+          Width="250"
+          Background="Transparent">
+        <Grid.Resources>
+            <Style TargetType="Grid">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect BlurRadius="15" />
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Border Height="270"
+                Background="#E6E9EA"
+                CornerRadius="10" />
+        <Border Height="210"
+                Background="{StaticResource colornegro}"
+                VerticalAlignment="Top"
+                CornerRadius="10" />
+        <StackPanel Margin="0,15,0,0"
+                    VerticalAlignment="Top">
+
+            <WrapPanel HorizontalAlignment="Right">
+                <WrapPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Width"
+                                Value="20" />
+                        <Setter Property="Margin"
+                                Value="3,0" />
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="Height"
+                                Value="20" />
+                        <Setter Property="Cursor"
+                                Value="Hand" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="{TemplateBinding Width}"
+                                            CornerRadius="10"
+                                            BorderThickness="0"
+                                            Height="{TemplateBinding Height}"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </WrapPanel.Resources>
+                <Button 
+                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}},
+                                    Path= DataContext.VerEditarEmpleadoCommand}"
+                        CommandParameter="{Binding Id}">
+                    <icono:ImageAwesome Icon="Pencil"
+                                        Foreground="White"
+                                        Width="15" />
+                </Button>
+                <Button Margin="2,0,8,0"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}},
+                                    Path= DataContext.VerEliminarEmpleadoCommand}"
+                        CommandParameter="{Binding Id}">
+                    <icono:ImageAwesome Icon="Trash"
+                                        Foreground="White"
+                                        Width="15" />
+                </Button>
+            </WrapPanel>
+            <icono:ImageAwesome Icon="UserCircle"
+                                Foreground="White"
+                                Height="100" />
+            <TextBlock Text="{Binding Nombre}"
+                       Foreground="White"
+                       FontSize="25"
+                       HorizontalAlignment="Center"
+                       Margin="0,10,0,0" />
+            <TextBlock Text="{Binding Sueldo, StringFormat=$0.00}"
+                       Foreground="{StaticResource colordorado}"
+                       FontSize="17"
+                       HorizontalAlignment="Right"
+                       Margin="10,5,15,0"/>
+        </StackPanel>
+        <TextBlock Text="{Binding Categoria.Nombre}"
+                   TextWrapping="Wrap"
+                   Foreground="Black"
+                   FontSize="25"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Margin="0,0,0,14" />
+    </Grid>
+</UserControl>

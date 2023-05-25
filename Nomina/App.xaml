@@ -1,0 +1,52 @@
+﻿<Application x:Class="Nomina.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Nomina"
+             StartupUri="./Views/MainView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush Color="#FCB500" x:Key="colordorado"/>
+            <SolidColorBrush Color="#007216" x:Key="colorverde"/>
+            <SolidColorBrush Color="#c20000" x:Key="colorrojo"/>
+            <Color x:Key="Ccolordorado">#FCB500</Color>
+            <SolidColorBrush Color="#1A1A1A"
+                             x:Key="colornegro" />
+            <Color x:Key="Ccolornegro">#1A1A1A</Color>
+            <Style TargetType="Button"
+                   x:Key="botones">
+                <Setter Property="Height"
+                        Value="60" />
+                <Setter Property="Width"
+                        Value="60" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#EAE509"
+                                          Offset="0" />
+                            <GradientStop Color="#7DCE13"
+                                          Offset="0.5" />
+                            <GradientStop Color="#5BB318"
+                                          Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Cursor"
+                        Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="{TemplateBinding Width}"
+                                    CornerRadius="10"
+                                    BorderThickness="0"
+                                    Height="{TemplateBinding Height}"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

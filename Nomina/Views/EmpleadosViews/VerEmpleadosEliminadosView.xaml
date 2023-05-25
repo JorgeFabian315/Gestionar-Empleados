@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="Nomina.Views.EmpleadosViews.VerEmpleadosEliminadosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Nomina.Views.EmpleadosViews"
+             xmlns:icono="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:Name="Variable">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height=".1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="2"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Margin="10,0">
+            <Run Text="Total empleados eliminados:" />
+            <Run Text="{Binding TotalEmpleadosEliminados}" Foreground="{StaticResource colorrojo}" FontWeight="SemiBold" /></TextBlock>
+        <TextBlock Text="Empleados eliminados"
+                       Foreground="Black"
+                       FontSize="35"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0"
+                       FontWeight="Light"
+                       FontFamily="/Assets/#Quicksand Medium" />
+            <Button Width="80"
+                    Height="50"
+                    Margin="10"
+                    Style="{StaticResource botones}"
+                    HorizontalAlignment="Right"
+                    Command="{Binding RegresarCommand}"
+                    Background="{StaticResource colorrojo}">
+            <icono:ImageAwesome Icon="ArrowLeft" Margin="8" Foreground="White" />
+        </Button>
+            <ScrollViewer Margin="5,15" Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding ListaEmpleadosEliminados}"
+                          >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:Plantilla2View />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,154 @@
+﻿<UserControl x:Class="Nomina.Views.EmpleadosViews.AgregarEmpleadoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Nomina.Views.EmpleadosViews"
+             xmlns:icono="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <Border Background="{StaticResource colornegro}" Opacity=".9"/>
+        <Border Width="900"
+                Height="550"
+                CornerRadius="10" Background="White">
+            <Grid Background="Transparent"
+                >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".1*" />
+                    <RowDefinition Height=".5*" />
+                    <RowDefinition Height=".15*" />
+                    <RowDefinition Height=".2*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Agregar Empleado"
+                           Foreground="Black"
+                           FontSize="35"
+                           HorizontalAlignment="Center"
+                           FontWeight="Light"
+                           VerticalAlignment="Bottom"
+                           FontFamily="/Assets/#Quicksand Medium" />
+                <TextBlock Text="{Binding Error}"
+                           Grid.Row="2"
+                           HorizontalAlignment="Center"
+                           Foreground="Red"
+                           FontSize="15" />
+                <WrapPanel Grid.Row="3"
+                           HorizontalAlignment="Center">
+                    <WrapPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Width"
+                                    Value="150" />
+                            <Setter Property="Margin"
+                                    Value="20,0" />
+                            <Setter Property="Background"
+                                    Value="Red" />
+                            <Setter Property="Height"
+                                    Value="50" />
+                            <Setter Property="Cursor"
+                                    Value="Hand" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Width="{TemplateBinding Width}"
+                                                CornerRadius="10"
+                                                BorderThickness="0"
+                                                Height="{TemplateBinding Height}"
+                                                Background="{TemplateBinding Background}">
+                                            <ContentPresenter />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver"
+                                                     Value="True">
+                                                <Setter Property="Effect">
+                                                    <Setter.Value>
+                                                        <DropShadowEffect BlurRadius="10" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </WrapPanel.Resources>
+                    <Button Command="{Binding AgregarEmpleadoCommand}"
+                            CommandParameter="{Binding ElementName=cmbCategoria,
+                Path=SelectedValue}"
+                            Background="{StaticResource colorverde}">
+                        <TextBlock Text="Agregar"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontSize="23" />
+                    </Button>
+                    <Button Command="{Binding RegresarCommand}">
+                        <TextBlock Text="Cancelar"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontSize="23" />
+                    </Button>
+                </WrapPanel>
+                <UniformGrid Margin="0"
+                             Rows="3"
+                             Grid.Row="1"
+                             HorizontalAlignment="Center"
+                             Height="250"
+                             Columns="2">
+                    <UniformGrid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize"
+                                    Value="20" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Center" />
+                            <Setter Property="FontWeight"
+                                    Value="Light" />
+                            <Setter Property="Margin"
+                                    Value="15,0,0,0" />
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin"
+                                    Value="15,0,0,0" />
+                            <Setter Property="FontSize"
+                                    Value="20" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Center" />
+                            <Setter Property="HorizontalAlignment"
+                                    Value="Left" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Center" />
+                            <Setter Property="Height"
+                                    Value="35" />
+                            <Setter Property="Width"
+                                    Value="400" />
+                        </Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="FontSize"
+                                    Value="20" />
+                            <Setter Property="Margin"
+                                    Value="15,0,0,0" />
+                            <Setter Property="Width"
+                                    Value="400" />
+                            <Setter Property="HorizontalAlignment"
+                                    Value="Left" />
+                            <Setter Property="Height"
+                                    Value="35" />
+                        </Style>
+                    </UniformGrid.Resources>
+                    <TextBlock Text="Nombre:" />
+                    <TextBox Text="{Binding Empleado.Nombre}" />
+                    <TextBlock Text="Sueldo:" />
+                    <TextBox Text="{Binding Empleado.Sueldo}" />
+                    <TextBlock Text="Categoría:" />
+                    <ComboBox ItemsSource="{Binding ListaCategorias}"
+                              DisplayMemberPath="Nombre"
+                              SelectedIndex="0"
+                              x:Name="cmbCategoria"
+                              SelectedValuePath="Id" />
+                </UniformGrid>
+            </Grid>
+        </Border>
+    </Grid>
+   
+</UserControl>
